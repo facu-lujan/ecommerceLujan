@@ -1,8 +1,8 @@
-var ShoppingCart = (function($) {
+let ShoppingCart = (function($) {
     "use strict";
     
     
-    var productsEl = document.querySelector(".products"),
+    let productsEl = document.querySelector(".products"),
         cartEl =     document.querySelector(".shopping-cart-list"),
         productQuantityEl = document.querySelector(".product-quantity"),
         emptyCartEl = document.querySelector(".empty-cart-btn"),
@@ -10,7 +10,7 @@ var ShoppingCart = (function($) {
         totalPriceEl = document.querySelector(".total-price");
     
     
-    var products = [
+    let products = [
       {
         id: 0,
         name: "iPhone 13",
@@ -57,9 +57,9 @@ var ShoppingCart = (function($) {
         productsInCart = [];
     
     
-    var generateProductList = function() {
+    let generateProductList = function() {
       products.forEach(function(item) {
-        var productEl = document.createElement("div");
+        let productEl = document.createElement("div");
         productEl.className = "product";
         productEl.innerHTML = `<div class="product-image">
                                   <img src="${item.imageUrl}" alt="${item.name}">
@@ -79,12 +79,12 @@ var ShoppingCart = (function($) {
     }
     
     
-    var generateCartList = function() {
+    let generateCartList = function() {
       
       cartEl.innerHTML = "";
       
       productsInCart.forEach(function(item) {
-        var li = document.createElement("li");
+        let li = document.createElement("li");
         li.innerHTML = `${item.quantity} ${item.product.name} - $${item.product.price * item.quantity}`;
         cartEl.appendChild(li);
       });
@@ -96,7 +96,7 @@ var ShoppingCart = (function($) {
     
     
     
-    var generateCartButtons = function() {
+    let generateCartButtons = function() {
       if(productsInCart.length > 0) {
         emptyCartEl.style.display = "block";
         cartCheckoutEl.style.display = "block"
@@ -108,11 +108,11 @@ var ShoppingCart = (function($) {
     }
     
   
-    var setupListeners = function() {
+    let setupListeners = function() {
       productsEl.addEventListener("click", function(event) {
-        var el = event.target;
+        let el = event.target;
         if(el.classList.contains("add-to-cart")) {
-         var elId = el.dataset.id;
+         let elId = el.dataset.id;
          addToCart(elId);
         }
       });
@@ -126,8 +126,8 @@ var ShoppingCart = (function($) {
     }
     
   
-    var addToCart = function(id) {
-      var obj = products[id];
+    let addToCart = function(id) {
+      let obj = products[id];
       if(productsInCart.length === 0 || productFound(obj.id) === undefined) {
         productsInCart.push({product: obj, quantity: 1});
       } else {
@@ -142,20 +142,20 @@ var ShoppingCart = (function($) {
     
     
  
-    var productFound = function(productId) {
+    let productFound = function(productId) {
       return productsInCart.find(function(item) {
         return item.product.id === productId;
       });
     }
   
-    var calculateTotalPrice = function() {
+    let calculateTotalPrice = function() {
       return productsInCart.reduce(function(total, item) {
         return total + (item.product.price *  item.quantity);
       }, 0);
     }
     
  
-    var init = function() {
+    let init = function() {
       generateProductList();
       setupListeners();
     }
