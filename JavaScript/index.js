@@ -169,3 +169,17 @@ let ShoppingCart = (function($) {
   })(jQuery);
   
   ShoppingCart.init();
+
+
+  const sweetAlert = document.querySelector ('.sweetAlert')
+
+  sweetAlert.onclick = (e) => {
+    swal({
+      title: "Muchas gracias por tu compra!",
+      text: "Chequea tu bandeja de mail para ver tu recibo",
+      icon: "success",
+      button: "Aceptar",
+    });
+  }
+
+  
